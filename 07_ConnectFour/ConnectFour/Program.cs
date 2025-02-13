@@ -1,8 +1,11 @@
+using ConnectFour;
 using ConnectFour.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<GameState>();
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -18,10 +21,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
